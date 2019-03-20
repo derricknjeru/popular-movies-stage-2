@@ -16,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -38,6 +40,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import static com.derrick.popularmoviesstage2.ui.details.ReviewActivity.EXTRA_MOVIE_ID;
+import static com.derrick.popularmoviesstage2.utils.Base_urls.TRAILER_BASE_URL;
 
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -52,6 +55,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
 
     private DetailsActivityViewModel mViewModel;
     private VideoAdapter mVideoAdapter;
+
+    private List<VideoResult> videoResult = null;
 
 
     @Override
@@ -101,8 +106,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         settingFavouriteMovie();
         //fetching  videos
         mViewModel.getVideoResult().observe(this, videoResults -> {
-            if (videoResults != null && videoResults.size() > 0) {
-                populateVideoUI(videoResults);
+            videoResult = videoResults;
+            if (videoResult != null && videoResult.size() > 0) {
+                populateVideoUI(videoResult);
             }
         });
         //fetching reviews
@@ -195,7 +201,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     /**
      * Hiding and showing the button because there is a bug in the material design library 28.0
      * which is already reported. see link below
-     *
+     * <p>
      * solution for {@link @https://issuetracker.google.com/issues/111316656 }
      */
     private void setFavourite(int backgroundImage) {
@@ -336,6 +342,33 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         if (mDetailsBinding.contentLayout.reviewLayout.viewMore == v) {
             openReviewsPage();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_detail, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_share) {
+            shareVideoUrl();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void shareVideoUrl() {
+        if (videoResult != null && videoResult.size() > 0) {
+            String youtubeUrl = TRAILER_BASE_URL + videoResult.get(0).getKey();
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, youtubeUrl);
+            sendIntent.setType(getString(R.string.share_type));
+            startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
         }
     }
 }

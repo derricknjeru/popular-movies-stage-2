@@ -26,5 +26,8 @@
     <string name="see_more">See more</string>
     <string name="author">author</string>
     <string name="title_activity_review">Reviews</string>
+    <string name="share">Share</string>
+    <string name="send_to">sms</string>
+    <string name="share_type">text/plain</string>
 
 </resources>
