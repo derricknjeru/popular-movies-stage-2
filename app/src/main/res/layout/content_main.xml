@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".ui.main.MainActivity"
+        tools:showIn="@layout/activity_main">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/grid_item" />
+
+        <TextView
+            android:id="@+id/error_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="16dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp"
+            android:visibility="visible"
+            tools:text="@string/add_api_key_error_message" />
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/content_pbar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
+</layout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/thumb_nail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/youtube_video"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/imageButton2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/open_trailer"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="@+id/thumb_nail"
+            app:layout_constraintEnd_toEndOf="@+id/thumb_nail"
+            app:layout_constraintStart_toStartOf="@+id/thumb_nail"
+            app:layout_constraintTop_toTopOf="@+id/thumb_nail"
+            app:srcCompat="@drawable/ic_play_circle_outline_white" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
