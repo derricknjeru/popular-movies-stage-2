@@ -8,7 +8,7 @@ public class LogUtils {
     /**
      * Set to true to enable logging
      */
-    public static final boolean IS_LOG_ENABLED = true;
+    public static final boolean IS_LOG_ENABLED = false;
 
     /**
      * To display debug message with tag when isDEBUG = true
