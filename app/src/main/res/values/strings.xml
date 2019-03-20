@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Popular Movies Stage 2</string>
-    <string name="add_key_message">copy key here</string>
+    <string name="add_key_message">copy api key here</string>
     <string name="add_api_key_error_message">Set api key in gradle.properties file.</string>
     <string name="highest_rated">Highest rated</string>
     <string name="most_popular">Most popular</string>

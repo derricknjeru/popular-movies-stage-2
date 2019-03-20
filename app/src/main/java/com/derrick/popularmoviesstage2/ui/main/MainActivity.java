@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         });
 
-        listenToFavoriteEmptyResponse();
-        listenToRetrofitError();
 
     }
 
@@ -105,6 +103,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             } else showLoading();
         });
+
+        listenToRetrofitError();
+
+        listenToFavoriteEmptyResponse();
+
 
 
     }
@@ -163,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
      * @param menu
      */
     private void initialToggle(Menu menu) {
-        LogUtils.showLog(LOG_TAG,"@Movie query toggle:"+query);
+        LogUtils.showLog(LOG_TAG, "@Movie query toggle:" + query);
         if (query.contentEquals(getString(R.string.pref_sorting_top_rated))) {
             menu.findItem(R.id.action_top_rated).setChecked(true);
         }
