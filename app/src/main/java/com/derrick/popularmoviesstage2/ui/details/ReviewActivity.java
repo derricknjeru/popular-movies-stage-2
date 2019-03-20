@@ -23,8 +23,6 @@ public class ReviewActivity extends AppCompatActivity {
     public static final long DEFAULT_ID = -1;
     long movie_id = -1;
 
-    private ReviewViewModel mViewModel;
-    private ReviewViewModelFactory factory;
     private ReviewAdapter mReviewAdapter;
 
     @Override
@@ -50,15 +48,14 @@ public class ReviewActivity extends AppCompatActivity {
         }
 
         if (movie_id != DEFAULT_ID) {
-            factory = InjectorUtils.provideReviewsViewModelFactory(this, movie_id);
-            mViewModel = ViewModelProviders.of(this, factory).get(ReviewViewModel.class);
 
-            mViewModel.getReviewsResult().observe(this, new Observer<List<ReviewsResult>>() {
-                @Override
-                public void onChanged(@Nullable List<ReviewsResult> reviewsResults) {
-                    if (reviewsResults != null && reviewsResults.size() > 0) {
-                        mReviewAdapter.setReviewsResults(reviewsResults);
-                    }
+
+            ReviewViewModelFactory factory = InjectorUtils.provideReviewsViewModelFactory(this, movie_id);
+            ReviewViewModel mViewModel = ViewModelProviders.of(this, factory).get(ReviewViewModel.class);
+
+            mViewModel.getReviewsResult().observe(this, reviewsResults -> {
+                if (reviewsResults != null && reviewsResults.size() > 0) {
+                    mReviewAdapter.setReviewsResults(reviewsResults);
                 }
             });
 

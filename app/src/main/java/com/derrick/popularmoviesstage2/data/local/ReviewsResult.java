@@ -60,7 +60,8 @@ public class ReviewsResult implements Parcelable {
         this.id = ((String) in.readValue((String.class.getClassLoader())));
         this.url = ((String) in.readValue((String.class.getClassLoader())));
     }
-   @Ignore
+
+    @Ignore
     public ReviewsResult() {
     }
 
@@ -115,7 +116,6 @@ public class ReviewsResult implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
 
 
 }

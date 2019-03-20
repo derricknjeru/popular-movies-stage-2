@@ -68,12 +68,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoHolder>
 
         LogUtils.showLog(LOG_TAG, "@Details mResult.getKey()" + mResult.getKey());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                watch_video(youtubeUrl);
-            }
-        });
+        holder.itemView.setOnClickListener(v -> watch_video(youtubeUrl));
 
     }
 

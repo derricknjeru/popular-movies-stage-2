@@ -2,6 +2,7 @@ package com.derrick.popularmoviesstage2.data.network;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.text.TextUtils;
 
 import com.derrick.popularmoviesstage2.R;
 import com.derrick.popularmoviesstage2.utils.InjectorUtils;
@@ -24,16 +25,20 @@ public class MovieIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        String action = intent.getAction();
+        if (intent != null) {
+            String action = intent.getAction();
+            if (!TextUtils.isEmpty(action)) {
 
-        if (action.contentEquals(getString(R.string.action_fetch_movies))) {
-            fetchMovies(intent);
-        }
-        if (action.contentEquals(getString(R.string.action_fetch_trailers))) {
-            fetchTrailer(intent);
-        }
-        if (action.contentEquals(getString(R.string.action_fetch_reviews))) {
-            fetchReviews(intent);
+                if (action.contentEquals(getString(R.string.action_fetch_movies))) {
+                    fetchMovies(intent);
+                }
+                if (action.contentEquals(getString(R.string.action_fetch_trailers))) {
+                    fetchTrailer(intent);
+                }
+                if (action.contentEquals(getString(R.string.action_fetch_reviews))) {
+                    fetchReviews(intent);
+                }
+            }
         }
 
     }

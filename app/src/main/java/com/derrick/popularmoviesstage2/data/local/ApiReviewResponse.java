@@ -2,6 +2,9 @@ package com.derrick.popularmoviesstage2.data.local;
 
 import java.util.List;
 
+/**
+ * Used to model reviews api response
+ */
 public class ApiReviewResponse {
     public int getMovie_id() {
         return movie_id;

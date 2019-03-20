@@ -3,7 +3,7 @@ package com.derrick.popularmoviesstage2.data.local;
 import java.util.List;
 
 /**
- * Used to model api response
+ * Used to model movies api response
  */
 public class ApiResponse {
     String sorted_value;

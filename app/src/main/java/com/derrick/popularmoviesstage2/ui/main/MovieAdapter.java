@@ -56,12 +56,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
         Picasso.get().load(poster).into(holder.mItemBinding.itemImg);
 
-        holder.mItemBinding.getRoot().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onListClickLister.onClick(movie.getId());
-            }
-        });
+        holder.mItemBinding.getRoot().setOnClickListener(v -> onListClickLister.onClick(movie.getId()));
 
     }
 

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Popular Movies Stage 2</string>
-    <string name="action_settings">Settings</string>
     <string name="add_key_message">copy key here</string>
     <string name="add_api_key_error_message">Set api key in gradle.properties file.</string>
     <string name="highest_rated">Highest rated</string>
@@ -15,8 +14,6 @@
     <string name="rating">Rating</string>
     <string name="release_date">Release date</string>
     <string name="sample_rating">9.4</string>
-    <string name="default_fab_value">0</string>
-    <string name="favorite">Favorite</string>
     <string name="pref_sorting_favourite">favorite</string>
     <string name="remove_fab">Removed from favorite</string>
     <string name="add_fav">Added to favorite</string>

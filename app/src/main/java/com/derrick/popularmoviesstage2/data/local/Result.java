@@ -1,8 +1,5 @@
 package com.derrick.popularmoviesstage2.data.local;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
@@ -13,15 +10,27 @@ import android.support.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Movies table
+ */
+
 @Entity(tableName = "result_table")
 public class Result implements Parcelable {
+    @NonNull
+    @SerializedName("my_id")
+    @Expose
+    @PrimaryKey(autoGenerate = true)
+    private Long my_id;
+
     @SerializedName("vote_count")
     @Expose
     private Long voteCount;
     @NonNull
     @SerializedName("id")
     @Expose
-    @PrimaryKey
     private Long id;
     @SerializedName("video")
     @Expose
@@ -84,6 +93,7 @@ public class Result implements Parcelable {
     };
 
     protected Result(Parcel in) {
+        this.my_id = ((Long) in.readValue((Long.class.getClassLoader())));
         this.voteCount = ((Long) in.readValue((Long.class.getClassLoader())));
         this.id = ((Long) in.readValue((Long.class.getClassLoader())));
         this.video = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
@@ -100,6 +110,26 @@ public class Result implements Parcelable {
         this.releaseDate = ((String) in.readValue((String.class.getClassLoader())));
         this.sortingValue = ((String) in.readValue((String.class.getClassLoader())));
         this.favourite = in.readInt();
+    }
+
+    public Result(@NonNull Long my_id, Long voteCount, @NonNull Long id, Boolean video, Double voteAverage, String title, Double popularity, String posterPath, String originalLanguage, String originalTitle, List<Long> genreIds, String backdropPath, Boolean adult, String overview, String releaseDate, String sortingValue, int favourite) {
+        this.my_id = my_id;
+        this.voteCount = voteCount;
+        this.id = id;
+        this.video = video;
+        this.voteAverage = voteAverage;
+        this.title = title;
+        this.popularity = popularity;
+        this.posterPath = posterPath;
+        this.originalLanguage = originalLanguage;
+        this.originalTitle = originalTitle;
+        this.genreIds = genreIds;
+        this.backdropPath = backdropPath;
+        this.adult = adult;
+        this.overview = overview;
+        this.releaseDate = releaseDate;
+        this.sortingValue = sortingValue;
+        this.favourite = favourite;
     }
 
     /**
@@ -126,6 +156,7 @@ public class Result implements Parcelable {
      * @param video
      * @param popularity
      */
+    @Ignore
     public Result(Long voteCount, Long id, Boolean video, Double voteAverage, String title, Double popularity, String posterPath, String originalLanguage, String originalTitle, List<Long> genreIds, String backdropPath, Boolean adult, String overview, String releaseDate, String sortingValue, Integer favourite) {
         super();
         this.voteCount = voteCount;
@@ -144,6 +175,10 @@ public class Result implements Parcelable {
         this.releaseDate = releaseDate;
         this.sortingValue = sortingValue;
         this.favourite = favourite;
+    }
+    @NonNull
+    public Long getMy_id() {
+        return my_id;
     }
 
     public Long getVoteCount() {
@@ -224,6 +259,7 @@ public class Result implements Parcelable {
 
 
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(my_id);
         dest.writeValue(voteCount);
         dest.writeValue(id);
         dest.writeValue(video);

@@ -17,7 +17,7 @@ public interface MovieDao {
      *
      * @param result an object of movies to insert
      */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     long[] bulkInsertMovies(Result... result);
 
     /**

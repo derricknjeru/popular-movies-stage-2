@@ -2,6 +2,9 @@ package com.derrick.popularmoviesstage2.data.local;
 
 import java.util.List;
 
+/**
+ * Used to model video api response
+ */
 public class ApiVideoResponse {
     private int movie_id;
 

@@ -63,6 +63,9 @@ public class MovieRepository {
         saveReviews();
     }
 
+    /**
+     * Saving movies to local database
+     */
     private void saveMovies() {
         LiveData<ApiResponse> apiMovies = mMovieNetworkDataSource.getMoviesResponse();
         apiMovies.observeForever(apiResponse -> {
@@ -91,6 +94,9 @@ public class MovieRepository {
 
     }
 
+    /**
+     * Saving review to local database
+     */
     private void saveReviews() {
         LiveData<ApiReviewResponse> reviewResultLiveData = mMovieNetworkDataSource.getReviewResultMutableLiveData();
         //saving trailers
@@ -114,6 +120,9 @@ public class MovieRepository {
         });
     }
 
+    /**
+     * Saving trailers to local database
+     */
     private void saveTrailers() {
         LiveData<ApiVideoResponse> videoResultLiveData = mMovieNetworkDataSource.getVideoResultMutableLiveData();
         //saving trailers
@@ -252,9 +261,9 @@ public class MovieRepository {
      */
     public void upDateFabValue(int fab, long movie_id) {
         mMovieDao.updateFavourite(fab, movie_id);
-        /**
-         * if favorite menu is selected, we post value
-         */
+
+         //if favorite menu is selected, we post value
+
         if (MoviePreferences.getSortingQuery(mContext, mContext.getString(R.string.pref_sorting_key)).contentEquals(mContext.getString(R.string.pref_sorting_favourite))) {
             moviesLiveData.postValue(mMovieDao.getAllFabMovies(1));
         }

@@ -30,11 +30,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private final String SAVED_MOVIES_LIST = "saved_movies";
     private MovieAdapter adapter;
-    private final int numberOfColumns = 2;
     private ActivityMainBinding mMainBinding;
     private MainActivityViewModel mViewModel;
     String query = "";
-    private MainViewModelFactory factory;
 
 
     @Override
@@ -50,22 +48,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         setToolBarTitle(query);
 
-        AppSignatureHelper appSignatureHelper=new AppSignatureHelper(this);
-        LogUtils.showLog(LOG_TAG, "@Movie appSignatureHelper::" + appSignatureHelper.getAppSignatures());
-
-
-
         fetchMovies();
 
-        adapter.setOnListClickLister(new MovieAdapter.onListClickLister() {
-            @Override
-            public void onClick(long movie_id) {
+        adapter.setOnListClickLister(movie_id -> {
 
-                Intent i = new Intent(MainActivity.this, DetailsActivity.class);
-                i.putExtra(EXTRA_MOVIE_DATA, movie_id);
-                startActivity(i);
+            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+            i.putExtra(EXTRA_MOVIE_DATA, movie_id);
+            startActivity(i);
 
-            }
         });
 
         listenToFavoriteEmptyResponse();
@@ -99,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             return;
         }
 
-        factory = InjectorUtils.provideMainViewModelFactory(this, query);
+        MainViewModelFactory factory = InjectorUtils.provideMainViewModelFactory(this, query);
         mViewModel = ViewModelProviders.of(this, factory).get(MainActivityViewModel.class);
 
 
@@ -150,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
 
     private void initializeViews() {
+        int numberOfColumns = 2;
         mMainBinding.mainContent.recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
         mMainBinding.mainContent.recyclerView.setHasFixedSize(true);
         adapter = new MovieAdapter();

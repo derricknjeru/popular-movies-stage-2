@@ -10,12 +10,8 @@ import com.derrick.popularmoviesstage2.data.local.ApiResponse;
 import com.derrick.popularmoviesstage2.data.local.ApiReviewResponse;
 import com.derrick.popularmoviesstage2.data.local.ApiVideoResponse;
 import com.derrick.popularmoviesstage2.data.local.Reviews;
-import com.derrick.popularmoviesstage2.data.local.ReviewsResult;
 import com.derrick.popularmoviesstage2.data.local.Video;
-import com.derrick.popularmoviesstage2.data.local.VideoResult;
 import com.derrick.popularmoviesstage2.utils.LogUtils;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,10 +35,10 @@ public class MovieNetworkDataSource {
     // Note the use of MutableLiveData, this allows changes to be made
     public MutableLiveData<Throwable> retrofitError = new MutableLiveData<>();
 
-
+    //Videos response
     public MutableLiveData<ApiVideoResponse> videoResultMutableLiveData = new MutableLiveData<>();
 
-
+    //Review response
     public MutableLiveData<ApiReviewResponse> reviewsResultMutableLiveData = new MutableLiveData<>();
 
 
@@ -61,6 +57,10 @@ public class MovieNetworkDataSource {
         return sInstance;
     }
 
+    /**
+     * Calling API to fetch movies
+     * @param sorting_string
+     */
     void fetchMovies(String sorting_string) {
         ApiInterface apiService =
                 ApiClient.getClient().create(ApiInterface.class);
@@ -86,6 +86,11 @@ public class MovieNetworkDataSource {
         });
     }
 
+    /**
+     * Starting a service
+     * @param sorting_value
+     * @param action
+     */
     public void StartService(String sorting_value, String action) {
         Intent i = new Intent(mContext, MovieIntentService.class);
         i.setAction(action);
@@ -93,19 +98,31 @@ public class MovieNetworkDataSource {
         mContext.startService(i);
     }
 
+    /**
+     * Movie response
+     * @return
+     */
     public MutableLiveData<ApiResponse> getMoviesResponse() {
         return MoviesResponse;
     }
 
-    //TODO create a Jobscheduler
+    //TODO create a Jobscheduler to fetch movies after 24 hrs
     public void scheduleRecurringFetchMovieSync() {
 
     }
 
+    /**
+     * error response
+     * @return
+     */
     public MutableLiveData<Throwable> getRetrofitError() {
         return retrofitError;
     }
 
+    /**
+     * Calling API to fetch Videos
+     * @param id
+     */
     void fetchTrailers(long id) {
         if (id != DEFAULT_ID) {
             ApiInterface apiService =
@@ -133,6 +150,10 @@ public class MovieNetworkDataSource {
         }
     }
 
+    /**
+     * Calling API to fetch reviews
+     * @param id
+     */
     void fetchReviews(long id) {
         if (id != DEFAULT_ID) {
 

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.derrick.popularmoviesstage2.data.local.ReviewsResult;
-import com.derrick.popularmoviesstage2.databinding.ReviewItemsBinding;
 import com.derrick.popularmoviesstage2.databinding.ReviewsRowBinding;
 
 import java.util.List;

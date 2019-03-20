@@ -1,7 +1,6 @@
 package com.derrick.popularmoviesstage2.data.network;
 
 import com.derrick.popularmoviesstage2.data.local.Reviews;
-import com.derrick.popularmoviesstage2.data.local.ReviewsResult;
 import com.derrick.popularmoviesstage2.data.local.Video;
 
 import retrofit2.Call;

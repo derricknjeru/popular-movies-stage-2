@@ -196,7 +196,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
      * Hiding and showing the button because there is a bug in the material design library 28.0
      * which is already reported. see link below
      *
-     * @Soln for {@link @https://issuetracker.google.com/issues/111316656 }
+     * solution for {@link @https://issuetracker.google.com/issues/111316656 }
      */
     private void setFavourite(int backgroundImage) {
         runOnUiThread(() -> {
